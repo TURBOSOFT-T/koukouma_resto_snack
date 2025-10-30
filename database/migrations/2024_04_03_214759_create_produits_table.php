@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('produits', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
+             $table->enum('type_produit', ['restauration', 'snack'])->default('snack');
           //  $table->string('tags')->nullable();
             $table->text('description')->nullable();
             $table->string('reference')->unique();
