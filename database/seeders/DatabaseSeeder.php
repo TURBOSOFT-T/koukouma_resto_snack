@@ -109,7 +109,7 @@ class DatabaseSeeder extends Seeder
          $user1 = new User();
         $user1->nom = ' Koukouma';
         $user1->prenom = 'Koukouma';
-        $user->email = 'koukoumamarket@gmail.com';
+        $user1->email = 'koukoumamarket@gmail.com';
         $user1->role = "admin";
         $user1->adresse = '123 rue de la paix';
         $user1->phone = '683 31 00 79';
