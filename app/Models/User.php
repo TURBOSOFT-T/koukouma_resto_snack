@@ -72,6 +72,11 @@ class User extends Authenticatable
         return $this->hasMany(contenu_commande::class, 'commercial_id');
     }
 
+     public function commercial()
+    {
+        return $this->hasMany(commandes::class, 'commercial_id');
+    }
+
     public function favoris()
     {
         return $this->hasMany(favoris::class, 'id_user');

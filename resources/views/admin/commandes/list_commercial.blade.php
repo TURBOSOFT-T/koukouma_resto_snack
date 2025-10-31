@@ -17,7 +17,7 @@
                                     <a href="javascript: void(0);">{{ config('app.name') }}</a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('commandes') }}">Commandes</a>
+                                    <a href="{{ route('commandes_commercial') }}">Commandes avec le commercial</a>
                                 </li>
                                 <li class="breadcrumb-item active">Liste</li>
                             </ol>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <hr>
-                  {{--   @livewire('Commandes.ListCommande') --}}
+                     @livewire('Commandes.Commerciaux') 
                 </div>
             </div>
 

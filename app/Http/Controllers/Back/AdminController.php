@@ -516,7 +516,7 @@ public function testimonials()
     {
         return view('admin.commandes.lives');
     }
-    public function commandes_commeecial()
+    public function commandes_commercial()
     {
         return view('admin.commandes.list_commercial');
     }

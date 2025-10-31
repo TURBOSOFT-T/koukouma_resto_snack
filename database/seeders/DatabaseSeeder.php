@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         'coupon_edit',
         'coupon_delete',
 
-        
+
 
         'testimonial_view',
         'testimonial_add',
@@ -106,11 +106,22 @@ class DatabaseSeeder extends Seeder
         $user->password = Hash::make('123456789');
         $user->save();
 
+        $user1 = new User();
+        $user1->nom = ' Koukouma';
+        $user1->prenom = 'Koukouma';
+        $user1->email = 'koukoumamarket@gmail.com';
+        $user1->role = "admin";
+        $user1->adresse = 'Douala  123 rue de la paix';
+        $user1->phone = ' 683 31 00 79';
+        $user1->code_postal = '75000';
+        $user1->password = Hash::make('123456789');
+        $user1->save();
+
         //creer un profil developpers
         $dev = new User();
-        $dev->nom = "Clien";
-        $dev->prenom = 'Clien';
-        $dev->email = 'dev@yahoo.fr';
+        $dev->nom = "Client";
+        $dev->prenom = 'Client';
+        $dev->email = 'client@gmail.com';
         $dev->role = "client";
         $dev->adresse = '123 rue du code';
         $dev->phone = '0612345678';
@@ -124,6 +135,7 @@ class DatabaseSeeder extends Seeder
         $role = Role::create(['name' => 'admin']);
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);
+        $user1->assignRole([$role->id]);
 
         $role2 = Role::create(['name' => 'developper']);
         $dev->assignRole([$role2->id]);
@@ -135,9 +147,10 @@ class DatabaseSeeder extends Seeder
 
         $cat = new config();
         $cat->frais = '15';
-        $cat->description = 'Notre objectif a pour vocation de prendre soin de votre jardin afin quil soit toujours impeccable, avec ses massifs désherbés, ses arbres bien taillés et sa pelouse parfaitement tondue.';
-        $cat->telephone = '56399165';
-        $cat->email = 'koukouma@gmail.com';
+        $cat->description = 'Bienvenue à KOUKOUMA terrasse 
+Nous vous offrons les services à emporter et à consommer sur place. KOUKOUMA c\’est aussi votre espace de divertissement ';
+        $cat->telephone = '683 31 00 79';
+        $cat->email = 'koukoumamarket@gmail.com';
         $cat->addresse = 'Douala Avenue Mohamed Melki 1005 El Omrane';
 
         $cat->save();

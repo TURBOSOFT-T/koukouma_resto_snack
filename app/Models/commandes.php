@@ -28,6 +28,7 @@ class commandes extends Model
         'user_id',
         'reference',
         'type_commande',
+        'commercial_id'
 
         
     ];
@@ -63,6 +64,10 @@ class commandes extends Model
             return true;
         }
         
+    }
+
+      public function commercial(){
+        return $this->belongsTo(User::class ,'commercial_id')->withDefault();
     }
 
     public function user()

@@ -58,15 +58,15 @@
             <thead class="table-dark">
                 <tr>
                     <th></th>
-                    <td></td>
+                   <th></th>
                     <th>ID</th>
                     <th>Nom</th>
                     <th>Prenom</th> 
                     <th>Téléphone</th>
-                  <th>Responssale  Commercial</th> 
+                   <th>Commercial</th> 
                     <th>Montant</th>
                     
-                    <th>Traitement</th>
+                  
                      <th>Statut</th>
                     <th>Mode</th>
                     <th>Coupon(Valeur)</th>
@@ -129,81 +129,11 @@
                               {{ $commande->prenom }}
                         </td>
                         <td>{{ $commande->phone }}</td>
-                         <td>
-                           
-                                 {{ $commande->commercial->nom ?? 'Commande client' }}   {{ $commande->commercial->prenom ??  '' }}
-                        
-                         
-                            
-                           {{--  {{ $commande->commercial->nom ?? 'Non attribué' }}   {{ $commande->commercial->prenom ??  '' }}
-                         --}}
-                        </td>
- 
+                        <td>{{ $commande->commercial->nom ?? 'Commande client' }}   {{ $commande->commercial->prenom ??  '' }}</td>
+
                      
                         <td>{{ $commande->montant() -  $commande->coupon   ??    ''  }} <x-devise></x-devise> </td>
-                        <td>
-                            @can('order_edit')
-                                @if ($commande->statut === 'payée')
-                                    <b class="text-success">
-                                        <i class="ri-check-double-fill"></i>
-                                        Payée
-                                    </b>
-                                @elseif($commande->statut == 'retournée')
-                                    <b class="text-danger">
-                                        @if ($commande->etat == 'confirmé')
-                                            <i class="ri-text-wrap"></i>
-                                            retournée
-                                        @else
-                                            <i class="ri-close-circle-line"></i>
-                                            Annulé
-                                        @endif
-                                    </b>
-                                @else
-                                    @if ($commande->etat == 'confirmé')
-
-
-                                    <select class="form-control-sm"
-                                                onchange="confirmStatusChange(event, {{ $commande->id }})"
-                                                data-current-status="{{ $commande->statut }}">
-                                                <option value="créé"
-                                                    {{ $commande->statut === 'créé' ? 'selected' : '' }}>Créé</option>
-                                                <option value="traitement"
-                                                    {{ $commande->statut === 'traitement' ? 'selected' : '' }}> En Traitement
-                                                </option>
-                                                <option value="En cours livraison"
-                                                    {{ $commande->statut === 'En cours livraison' ? 'selected' : '' }}>En
-                                                    cours de Livraison</option>
-                                                <option value="livrée"
-                                                    {{ $commande->statut === 'livrée' ? 'selected' : '' }}>Livrée</option>
-                                                <option value="payée"
-                                                    {{ $commande->statut === 'payée' ? 'selected' : '' }}>Payée</option>
-                                               
-                                                <option value="retournée"
-                                                    {{ $commande->statut === 'retournée' ? 'selected' : '' }}>Retournée
-                                                </option>
-                                            </select>
-                                        
-                                    @elseif($commande->etat == 'attente')
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-sm btn-primary"
-                                                wire:click="confirmer({{ $commande->id }})">
-                                                <i class="ri-checkbox-circle-line"></i>
-                                                Valider
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger"
-                                                wire:click="annuler({{ $commande->id }})">
-                                                <i class="ri-close-line"></i>
-                                                Annluer
-                                            </button>
-                                        </div>
-                                    @else
-                                        <i class="ri-close-circle-line"></i>
-                                        Annulé
-                                    @endif
-                                @endif
-                            @endcan
-
-                        </td>
+                        
                         <td>@switch($commande->statut)
         @case('attente')
             <span class="badge bg-warning text-dark">En attente</span>
@@ -244,20 +174,8 @@
                         <td>{{ $commande->created_at }} </td>
                         <td style="text-align: right;">
                             <div class="btn-group">
-                                @can('order_edit')
-                                    @if ($commande->modifiable())
-                                        <button class="btn btn-sm btn-warning"
-                                            onclick="url('{{ route('edit_commande', ['id' => $commande->id]) }}')">
-                                            <i class="ri-edit-2-line"></i>
-                                        </button>
-                                    @endif
-                                @endcan
-                                @can('order_edit')
-                                    <button class="btn btn-sm btn-primary"
-                                        onclick="add_note({{ $commande->id }},'{{ $commande->nom }}')">
-                                        <i class="ri-sticky-note-add-line"></i> Note
-                                    </button>
-                                @endcan
+                               
+                              
                                 <button class="btn btn-info btn-sm" type="button" title="Imprimer la commande"
                                     onclick="url('{{ route('print_commande', ['id' => $commande->id]) }}')">
                                     <i class="ri-printer-line"></i>

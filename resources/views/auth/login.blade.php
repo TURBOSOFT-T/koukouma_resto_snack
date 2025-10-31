@@ -61,7 +61,7 @@ $produit = DB::table('produits')->get();
                         <a href="{{ url('register') }}" class="axil-btn btn-bg-secondary2 sign-up-btn"> {{ \App\Helpers\TranslationHelper::TranslateText('S\'inscrire') }}</a>
                         <style>
                             .btn-bg-secondary2 {
-                                background-color: #5EA13C;
+                                background-color: #3577f0;;
 
                                 color: #ffffff;
 
@@ -75,7 +75,7 @@ $produit = DB::table('produits')->get();
                             }
 
                             .btn-bg-secondary2:hover {
-                                background-color: #5EA13C;
+                                background-color: #3577f0;;
 
                                 color: #ffffff;
 
@@ -112,14 +112,14 @@ $produit = DB::table('produits')->get();
                 </style>
                 <div class="axil-signin-banner bg_image bg_image--9">
                     <h3 class="title">
-                        {{ \App\Helpers\TranslationHelper::TranslateText('Nous offrons les mellieurs produits') }} .</h3>
+                        {{ \App\Helpers\TranslationHelper::TranslateText('Nous offrons les mellieurs services') }} .</h3>
                 </div>
             </div>
             <div class="col-lg-6 offset-xl-2">
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
                         <h3 class="title">
-                         {{ \App\Helpers\TranslationHelper::TranslateText('Connectez-vous à ') }} Ben Madmoud Market</h3>
+                         {{ \App\Helpers\TranslationHelper::TranslateText('Connectez-vous à ') }} Koukouma Market</h3>
                         <p class="b2 mb--55">
                             {{ \App\Helpers\TranslationHelper::TranslateText('Entrez les coordonnées ci-dessous') }}
                         </p>

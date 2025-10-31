@@ -50,7 +50,7 @@ $produit = DB::table('produits')->get();
     <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
     <!-- Start Header -->
    <header class="header axil-header header-style-5">
-            <div class="axil-header-top"  style=" background-color: #a42f5a;">
+            <div class="axil-header-top"  style=" background-color: #3577f0;;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-sm-6 col-12">
@@ -142,7 +142,7 @@ $produit = DB::table('produits')->get();
 
 
                                 .nav-brand:hover img {
-                                    transform: scale(1.1);
+                                    transform: scale(1.6);
                                 }
 
 
@@ -217,12 +217,12 @@ $produit = DB::table('produits')->get();
                                         <i class="flaticon-magnifying-glass"></i>
                                     </a>
                                 </li>
-                                <li class="wishlist">
-                                    <a href="{{ route('favories') }}">
+                                <li   class="wishlist" >
+                                    <a  href="{{ route('favories') }}">
                                         <i class="flaticon-heart"></i>
                                     </a>
                                 </li>
-                                <li class="shopping-cart">
+                                <li     class="shopping-cart" >
                                     <a href="#" class="cart-dropdown-btn">
                                         <span class="cart-count" id="count-panier-span">00</span>
                                         <i class="flaticon-shopping-cart"></i>
@@ -786,7 +786,7 @@ $produit = DB::table('produits')->get();
 
     <style>
         .btn-bg-primary2 {
-            background-color: #5EA13C;
+            background-color: #3577f0;;
             color: #ffffff;
             border: none;
             padding: 10px 20px;

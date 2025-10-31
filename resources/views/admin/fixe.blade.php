@@ -299,13 +299,13 @@
                             <li>
                                 <a href="{{ route('commandes_en_lives') }}">
                                     <i class="bx bx-right-arrow-alt"></i>
-                                    Les   commandese live
+                                    Les   commandes en live
                                 </a>
                             </li>
 
 
                             <li>
-                                <a href="#">
+                                <a  href="{{ route('commandes_commercial') }}">
                                     <i class="bx bx-right-arrow-alt"></i>
                                     Les   commandes avec  commercial
                                 </a>

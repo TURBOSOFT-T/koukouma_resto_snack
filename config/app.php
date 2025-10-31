@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'MARIBELLE'),
+    'name' => env('APP_NAME', 'KOUKOUMA'),
     'auteur_url' => env('APP_AUTEUR_URL', 'Laravel auteur'),
     'auteur' => env('APP_AUTEUR', 'Laravel url'),
     'app_url' => env('APP_URL','url'),
@@ -107,7 +107,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -256,7 +256,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'description' => 'Le site  de vente en ligne',
-    'author' => 'The best author',
+    'description' => 'KOUKOUMA RESTO SNACK Le site  de vente en ligne',
+    'author' => 'KOUKOUMA',
 
 ];

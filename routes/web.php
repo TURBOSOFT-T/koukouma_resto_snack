@@ -235,6 +235,9 @@ Route::middleware(['auth'])->group(function () {
              Route::get('/commandes_en_lives', [AdminController::class, 'commandes_en_lives'])
             ->name('commandes_en_lives')
             ->middleware('permission:order_view');
+              Route::get('/commandes_commercial', [AdminController::class, 'commandes_commercial'])
+            ->name('commandes_commercial')
+            ->middleware('permission:order_view');
         Route::get('/parametres', [AdminController::class, 'parametres'])
             ->name('parametres');
 
