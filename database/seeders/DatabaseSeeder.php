@@ -96,12 +96,12 @@ class DatabaseSeeder extends Seeder
 
         // Créer un administrateur directement après la création de la table
         $user = new User();
-        $user->nom = ' Admin';
-        $user->prenom = 'Admin';
-        $user->email = 'admin@gmail.com';
+        $user->nom = ' Koukouma';
+        $user->prenom = 'Koukouma';
+        $user->email = 'koukoumamarket@gmail.com';
         $user->role = "admin";
         $user->adresse = '123 rue de la paix';
-        $user->phone = '0612345678';
+        $user->phone = '683 31 00 79';
         $user->code_postal = '75000';
         $user->password = Hash::make('123456789');
         $user->save();
