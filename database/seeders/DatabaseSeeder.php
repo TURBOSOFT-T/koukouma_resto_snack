@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\{User, config, Marque, Service, Category};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,10 @@ use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
+    /**
+     * Seed the application's database.
+     */
+
     private $permissions = [
         'dashboard',
         'clients_view',
@@ -45,6 +50,8 @@ class DatabaseSeeder extends Seeder
         'coupon_edit',
         'coupon_delete',
 
+        
+
         'testimonial_view',
         'testimonial_add',
         'testimonial_edit',
@@ -55,7 +62,9 @@ class DatabaseSeeder extends Seeder
         'table_edit',
         'table_delete',
 
+
         'price_view',
+
 
         'order_view',
         'order_add',
@@ -67,76 +76,73 @@ class DatabaseSeeder extends Seeder
         'live_order_edit',
         'live_order_delete',
 
+
         'setting_view',
         'message_view',
         'gestion_stock'
     ];
 
+
     public function run(): void
     {
-        // 🔹 Créer les permissions
+
         foreach ($this->permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::create(['name' => $permission]);
         }
+
+
+
+
+
+        // Créer un administrateur directement après la création de la table
+        $user = new User();
+        $user->nom = ' Admin';
+        $user->prenom = 'Admin';
+        $user->email = 'admin@gmail.com';
+        $user->role = "admin";
+        $user->adresse = '123 rue de la paix';
+        $user->phone = '0612345678';
+        $user->code_postal = '75000';
+        $user->password = Hash::make('123456789');
+        $user->save();
+
+
+        //creer un profil developpers
+        $dev = new User();
+        $dev->nom = "Client";
+        $dev->prenom = 'Client';
+        $dev->email = 'client@gmail.com';
+        $dev->role = "client";
+        $dev->adresse = '123 rue du code';
+        $dev->phone = '0612345678';
+        $dev->code_postal = '75000';
+        $dev->password = Hash::make('123456789');
+        $dev->save();
+
 
         $permissions = Permission::pluck('id', 'id')->all();
 
-        // 🔹 Créer le rôle "admin" et lui assigner toutes les permissions
-        $roleAdmin = Role::firstOrCreate(['name' => 'admin']);
-        $roleAdmin->syncPermissions($permissions);
+        $role = Role::create(['name' => 'admin']);
+        $role->syncPermissions($permissions);
+        $user->assignRole([$role->id]);
+        
 
-        // 🔹 Créer le premier administrateur
-        $admin1 = User::create([
-            'nom' => 'Admin',
-            'prenom' => 'Principal',
-            'email' => 'admin1@gmail.com',
-            'role' => 'admin',
-            'adresse' => '123 rue de la paix',
-            'phone' => '0612345678',
-            'code_postal' => '75000',
-            'password' => Hash::make('123456789'),
-        ]);
-        $admin1->assignRole([$roleAdmin->id]);
+        $role2 = Role::create(['name' => 'developper']);
+        $dev->assignRole([$role2->id]);
+        $role2->syncPermissions($permissions);
 
-        // 🔹 Créer le deuxième administrateur
-        $admin2 = User::create([
-            'nom' => 'Admin',
-            'prenom' => 'Secondaire',
-            'email' => 'admin2@gmail.com',
-            'role' => 'admin',
-            'adresse' => '456 avenue de la liberté',
-            'phone' => '0698765432',
-            'code_postal' => '69000',
-            'password' => Hash::make('123456789'),
-        ]);
-        $admin2->assignRole([$roleAdmin->id]);
 
-        // 🔹 Créer un utilisateur client par défaut
-        $client = User::create([
-            'nom' => 'Client',
-            'prenom' => 'Démo',
-            'email' => 'client@gmail.com',
-            'role' => 'client',
-            'adresse' => '123 rue du code',
-            'phone' => '0612345678',
-            'code_postal' => '75000',
-            'password' => Hash::make('123456789'),
-        ]);
+        $role = Role::create(['name' => 'personnel']);
 
-        $roleClient = Role::firstOrCreate(['name' => 'client']);
-        $client->assignRole([$roleClient->id]);
 
-        // 🔹 Créer le rôle "personnel" (vide pour le moment)
-        Role::firstOrCreate(['name' => 'personnel']);
-
-        // 🔹 Créer la configuration par défaut
         $cat = new config();
         $cat->frais = '15';
         $cat->description = 'Bienvenue à KOUKOUMA terrasse 
-Nous vous offrons les services à emporter et à consommer sur place. KOUKOUMA c’est aussi votre espace de divertissement.';
+Nous vous offrons les services à emporter et à consommer sur place. KOUKOUMA c\’est aussi votre espace de divertissement';
         $cat->telephone = '683 31 00 79';
         $cat->email = 'koukoumamarket@gmail.com';
         $cat->addresse = 'Douala Avenue Mohamed Melki 1005 El Omrane';
+
         $cat->save();
     }
 }
