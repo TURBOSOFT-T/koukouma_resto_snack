@@ -90,10 +90,14 @@ class AdminContact extends Component
     public function update_form(){
         // valid all form fields as nulable
         $this->validate([
-            'logo' => 'sometimes|nullable|file|mimetypes:image/*',   // 1MB Max
+            'logo' =>  'image|nullable|max:20024',   // 1MB Max
           //  'logoHeader' =>  'image|nullable|max:2024',   // 1MB Max
-            'icon' => 'sometimes|nullable|file|mimetypes:image/*',
-            'logofooter'  => 'sometimes|nullable|file|mimetypes:image/*',
+            'icon' =>  'image|nullable|max:2024',//
+            'logofooter' =>  'image|nullable|max:20024',//
+            // 'logo' => 'sometimes|nullable|file|mimetypes:image/*',   
+        
+           // 'icon' => 'sometimes|nullable|file|mimetypes:image/*',
+            //'logofooter'  => 'sometimes|nullable|file|mimetypes:image/*',
             'frais' => 'nullable|numeric',
             'satisfaction' => 'nullable|numeric',
             'telephone' => 'nullable|numeric',
