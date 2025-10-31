@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
         $user->password = Hash::make('123456789');
         $user->save();
 
-        $user1 = new User();
+       /*  $user1 = new User();
         $user1->nom = ' Koukouma';
         $user1->prenom = 'Koukouma';
         $user1->email = 'koukoumamarket@gmail.com';
@@ -115,7 +115,7 @@ class DatabaseSeeder extends Seeder
         $user1->phone = ' 683 31 00 79';
         $user1->code_postal = '75000';
         $user1->password = Hash::make('123456789');
-        $user1->save();
+        $user1->save(); */
 
         //creer un profil developpers
         $dev = new User();
@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
         $role = Role::create(['name' => 'admin']);
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);
-        $user1->assignRole([$role->id]);
+       // $user1->assignRole([$role->id]);
 
         $role2 = Role::create(['name' => 'developper']);
         $dev->assignRole([$role2->id]);
