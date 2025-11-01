@@ -111,16 +111,16 @@
                                 </span>
                                 <b class="text-success">
                                     {{ $produit->getPrice() }} <x-devise></x-devise>
-                        </td>
+                       
                         </b>
                         <br>
                         <strike>
                             <span class="text-danger small">
-                                {{ $produit->prix }} <x-devise></x-devise></td>
+                                {{ $produit->prix }} <x-devise></x-devise>
                             </span>
                         </strike>
                     @else
-                        {{ $produit->getPrice() }} <x-devise></x-devise></td>
+                        {{ $produit->getPrice() }} <x-devise></x-devise>
                 @endif
 
                 </td>
