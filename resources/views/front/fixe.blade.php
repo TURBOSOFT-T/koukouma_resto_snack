@@ -429,8 +429,7 @@ $produit = DB::table('produits')->get();
 
                         </div>
                     </div>
-                    <!-- End Single Widget  -->
-                    <!-- Start Single Widget  -->
+                   
                     <div class="col-lg-3 col-sm-6">
                         <div class="axil-footer-widget">
                             <h5 class="widget-title">  {{ \App\Helpers\TranslationHelper::TranslateText('Mon compte') }}</h5>
@@ -760,10 +759,7 @@ $produit = DB::table('produits')->get();
             <div class="cart-body">
                 <ul class="cart-item-list" id="list_content_panier">
 
-                    {{-- <div class="cart-item row" id="list_content_panier">
-
-                    </div> --}}
-
+                   
 
                 </ul>
             </div>

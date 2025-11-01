@@ -37,7 +37,7 @@
                     <th>Prix vente</th>
                     <th>Prix achat</th>
                     <th>Sell</th>
-                    
+
                     <th>création</th>
                     <th style="text-align: right;">
                         <span wire:loading>
@@ -68,11 +68,9 @@
 
                             {{ $produit->nom }}
                         </td>
-                       
+
                         <td class="cusor">
-                            {{--   <span class="badge {{ $produit->stock > 0 ? 'bg-success' : 'bg-danger' }}">
-                                {{ $produit->stock > 0 ? 'En stock' : 'Rupture' }}
-                            </span> --}}
+
 
                             @if ($produit->stock > 20)
                                 <!-- Icône pour en stock -->
@@ -86,7 +84,10 @@
                             @if ($produit->stock < 20 && $produit->stock > 0)
                                 <!-- Seuil pour l'alerte -->
                                 {{ $produit->stock }} U.
-                                <span class="badge badge-yellow" title="{{ $produit->stock }} Produit(s) en stock pour le moment"  style="background-color: rgb(222, 222, 19) ;  color: rgb(252, 253, 251);">Alerte Stock Bas</span>
+                                <span class="badge badge-yellow"
+                                    title="{{ $produit->stock }} Produit(s) en stock pour le moment"
+                                    style="background-color: rgb(222, 222, 19) ;  color: rgb(252, 253, 251);">Alerte
+                                    Stock Bas</span>
                             @endif
 
 
@@ -109,133 +110,133 @@
                                     - {{ $produit->inPromotion()->pourcentage }} %
                                 </span>
                                 <b class="text-success">
-                                    {{ $produit->getPrice() }} <x-devise></x-devise></td>
-                                </b>
-                                <br>
-                                <strike>
-                                    <span class="text-danger small">
-                                        {{ $produit->prix }}  <x-devise></x-devise></td>
-                                    </span>
-                                </strike>
-                            @else
-                                {{ $produit->getPrice() }}  <x-devise></x-devise></td>
-                            @endif
-
+                                    {{ $produit->getPrice() }} <x-devise></x-devise>
                         </td>
-                        <td>{{ $produit->prix_achat }}  <x-devise></x-devise></td></td>
-                        <td>
-                            <i class="ri-wallet-2-line vert"></i>
-                            {{ $produit->vendus->count() }}
-                        </td>
-                        
-                        <td>{{ $produit->created_at->format('d/m/Y') }} </td>
-                        <td style="text-align: right;">
-                            <div class="btn-group">
+                        </b>
+                        <br>
+                        <strike>
+                            <span class="text-danger small">
+                                {{ $produit->prix }} <x-devise></x-devise></td>
+                            </span>
+                        </strike>
+                    @else
+                        {{ $produit->getPrice() }} <x-devise></x-devise></td>
+                @endif
 
-                                @if ($produit->stock < 20)
-                    {{--                 <b title="Historique"
+                </td>
+                <td>{{ $produit->prix_achat }} <x-devise></x-devise></td>
+                <td>
+                    <i class="ri-wallet-2-line vert"></i>
+                    {{ $produit->vendus->count() }}
+                </td>
+
+                <td>{{ $produit->created_at->format('d/m/Y') }} </td>
+                <td style="text-align: right;">
+                    <div class="btn-group">
+
+                        @if ($produit->stock < 20)
+                            {{--                 <b title="Historique"
                                         onclick="window.location.href='{{ route('produits.historique', ['id' => $produit->id]) }}'">
 
                                         <i class="fas fa-history"></i>
                                     </b --}}
-                              
-                                    <button class="btn btn-primary btn-sm" title="Ajouter Stock"
-                                        wire:click="openModal({{ $produit->id }})">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                @endif
 
-                                <button class="btn btn-sm btn-dark"
-                                    onclick="url(' {{ route('produits.update', ['id' => $produit->id]) }} ')">
-                                    <i class="ri-edit-box-line"></i>
-                                </button>
-                                @can('product_edit')
-                                    <button class="btn btn-sm btn-warning" title="Promotion"
-                                        onclick="url('{{ route('promotions_produit', ['id' => $produit->id]) }}')">
-                                        <i class="ri-discount-percent-fill"></i>
-                                    </button>
-                                @endcan
-                              
-                                @can('product_delete')
-                                    <button class="btn btn-sm btn-danger"
-                                        onclick="toggle_confirmation({{ $produit->id }})">
-                                        <i class="ri-delete-bin-6-line"></i>
-                                    </button>
-                                @endcan
-                            </div>
-
-                            <!-- Center modal content -->
-                            <div class="modal fade" id="qr-code-{{ $produit->id }}" tabindex="-1" role="dialog"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h6 class="modal-title" id="myCenterModalLabel">
-                                                Accès rapide au produit
-                                            </h6>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table class="table" style="text-align: left;">
-                                                <tr>
-                                                    <td>Prix d'acaht :</td>
-                                                    <td>{{ $produit->prix_achat }} <x-devise></x-devise></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Bénéfce / produit :</td>
-                                                    <td> {{ $produit->prix - $produit->prix_achat }}
-                                                        <x-devise></x-devise>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Réference :</td>
-                                                    <td>
-                                                        {{ $produit->reference }}
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Stock : </td>
-                                                    <td class="d-flex justify-content-between">
-                                                        <span>
-                                                            {{ $produit->stock }} U.
-                                                        </span>
-                                                        <b class="cusor"
-                                                            onclick="url('{{ route('produits.historique', ['id' => $produit->id]) }}')">
-                                                            <i class="ri-history-fill"></i>
-                                                            Historique
-                                                        </b>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <br>
-                                            <div class="text-center p-2">
-                                                {{-- {!! QrCode::size(100)->generate(route('produit2', ['id' => $produit->id])) !!} --}}
-                                            </div>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
-
-                            <button class="btn btn-sm btn-success d-none" type="button"
-                                id="confirmBtn{{ $produit->id }}" wire:click="delete({{ $produit->id }})">
-                                <i class="bi bi-check-circle"></i>
-                                <span class="hide-tablete">
-                                    Confirmer
-                                </span>
+                            <button class="btn btn-primary btn-sm" title="Ajouter Stock"
+                                wire:click="openModal({{ $produit->id }})">
+                                <i class="fas fa-plus"></i>
                             </button>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="10" class="text-center">
-                            <div>
-                                <img src="/icons/icons8-ticket-100.png" height="100" width="100" alt=""
-                                    srcset="">
-                            </div>
-                            Aucun produit trouvé
-                        </td>
-                    </tr>
+                        @endif
+
+                        <button class="btn btn-sm btn-dark"
+                            onclick="url(' {{ route('produits.update', ['id' => $produit->id]) }} ')">
+                            <i class="ri-edit-box-line"></i>
+                        </button>
+                        @can('product_edit')
+                            <button class="btn btn-sm btn-warning" title="Promotion"
+                                onclick="url('{{ route('promotions_produit', ['id' => $produit->id]) }}')">
+                                <i class="ri-discount-percent-fill"></i>
+                            </button>
+                        @endcan
+
+                        @can('product_delete')
+                            <button class="btn btn-sm btn-danger" onclick="toggle_confirmation({{ $produit->id }})">
+                                <i class="ri-delete-bin-6-line"></i>
+                            </button>
+                        @endcan
+                    </div>
+
+                    <!-- Center modal content -->
+                    <div class="modal fade" id="qr-code-{{ $produit->id }}" tabindex="-1" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="myCenterModalLabel">
+                                        Accès rapide au produit
+                                    </h6>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table" style="text-align: left;">
+                                        <tr>
+                                            <td>Prix d'acaht :</td>
+                                            <td>{{ $produit->prix_achat }} <x-devise></x-devise></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bénéfce / produit :</td>
+                                            <td> {{ $produit->prix - $produit->prix_achat }}
+                                                <x-devise></x-devise>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Réference :</td>
+                                            <td>
+                                                {{ $produit->reference }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Stock : </td>
+                                            <td class="d-flex justify-content-between">
+                                                <span>
+                                                    {{ $produit->stock }} U.
+                                                </span>
+                                                <b class="cusor"
+                                                    onclick="url('{{ route('produits.historique', ['id' => $produit->id]) }}')">
+                                                    <i class="ri-history-fill"></i>
+                                                    Historique
+                                                </b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br>
+                                    <div class="text-center p-2">
+                                        {{-- {!! QrCode::size(100)->generate(route('produit2', ['id' => $produit->id])) !!} --}}
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
+                    <button class="btn btn-sm btn-success d-none" type="button" id="confirmBtn{{ $produit->id }}"
+                        wire:click="delete({{ $produit->id }})">
+                        <i class="bi bi-check-circle"></i>
+                        <span class="hide-tablete">
+                            Confirmer
+                        </span>
+                    </button>
+                </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="10" class="text-center">
+                        <div>
+                            <img src="/icons/icons8-ticket-100.png" height="100" width="100" alt=""
+                                srcset="">
+                        </div>
+                        Aucun produit trouvé
+                    </td>
+                </tr>
                 @endforelse
 
             </tbody>
@@ -253,7 +254,7 @@
             </a>
         </div>
     @endrole
-  {{--   <script>
+    {{--   <script>
         function handleSelectChange(productId, value) {
             if (value === 'historique') {
                

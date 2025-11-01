@@ -15,7 +15,7 @@ class HomeComposer
           //  'categories' => Category::has('produits')->take(8)->get(), // Pour la catégorie page
             'categories' => Category::all(), // Pour la catégorie page
             'searchproducts' => produits::select('*')->latest()->take(5)->get(),
-            'lastproduits' => produits::orderBy('created_at', 'desc')->take(9)->get(),
+            'lastproduits' => produits::orderBy('created_at', 'desc')->take(12)->get(),
            'marques' => Marque::all(),
 
           //  'marques' =>Marque::has('produits')->take(6)->get(), /// Pour le home page
