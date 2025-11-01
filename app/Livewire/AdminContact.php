@@ -92,7 +92,7 @@ class AdminContact extends Component
         $this->validate([
             'logo' =>  'image|nullable|max:20024',   // 1MB Max
           //  'logoHeader' =>  'image|nullable|max:2024',   // 1MB Max
-            'icon' =>  'image|nullable|max:2024',//
+            'icon' =>  'image|nullable|max:20024',//
             'logofooter' =>  'image|nullable|max:20024',//
             // 'logo' => 'sometimes|nullable|file|mimetypes:image/*',   
         

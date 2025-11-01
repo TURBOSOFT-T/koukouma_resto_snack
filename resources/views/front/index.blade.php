@@ -159,9 +159,9 @@
         <div class="axil-categorie-area bg-color-white axil-section-gapcommon">
             <div class="container">
                 <div class="section-title-wrapper">
-                    <h4> <span class="axil-breadcrumb-item1 active" aria-current="page"> <i class="far fa-tags"></i> {{ \App\Helpers\TranslationHelper::TranslateText('Categories') }}</span> </h4>
+                    <h4> <span class="axil-breadcrumb-item1 active" aria-current="page"> <i class="far fa-tags"></i> {{ \App\Helpers\TranslationHelper::TranslateText('Familles') }}</span> </h4>
                     <h2 class="title">
-                        {{ \App\Helpers\TranslationHelper::TranslateText('Parcourrir par categories') }}
+                        {{ \App\Helpers\TranslationHelper::TranslateText('Parcourrir par famille') }}
                     </h2>
                 </div>
                 <div class="categrie-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
